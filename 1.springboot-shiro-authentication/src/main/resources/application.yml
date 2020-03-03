@@ -1,0 +1,20 @@
+spring:
+  mvc:
+    static-path-pattern: /static/**
+  thymeleaf:
+    model: HTML5
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: utf-8
+    cache: false
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      url: jdbc:mysql://106.14.153.157:3306/springbootdb?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+      username: root
+      password: 123456
+      initial-size: 10
+      max-active: 50
+      min-idle: 10
+      max-wait: 5000

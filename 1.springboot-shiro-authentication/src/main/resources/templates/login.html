@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<meta name="keywords" content="Flat Dark Web Login Form Responsive Templates, Iphone Widget Template, Smartphone login forms,Login form, Widget Template, Responsive Templates, a Ipad 404 Templates, Flat Responsive Templates" />
+<link th:href="@{/static/css/style.css}" rel='stylesheet' type='text/css' />
+<!--webfonts-->
+<link href='http://fonts.useso.com/css?family=PT+Sans:400,700,400italic,700italic|Oswald:400,300,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+<!--//webfonts-->
+<script th:src="@{/static/js/jquery-2.2.min.js}"></script>
+</head>
+<body>
+<script>$(document).ready(function(c) {
+	$('.close').on('click', function(c){
+		$('.login-form').fadeOut('slow', function(c){
+	  		$('.login-form').remove();
+		});
+	});	  
+});
+</script>
+ <!--SIGN UP-->
+ <h1>klasikal Login Form</h1>
+<div class="login-form">
+	<div class="close"> </div>
+		<div class="head-info">
+			<label class="lbl-1"> </label>
+			<label class="lbl-2"> </label>
+			<label class="lbl-3"> </label>
+		</div>
+			<div class="clear"> </div>
+	<div class="avtar">
+		<img th:src="@{/static/images/avtar.png}" />
+	</div>
+			<form id="loginForm">
+				<input type="text" id="username" name="username" class="text"  />
+				<input type="password" id="password" name="password"  />
+				<p><input type="checkbox" name="rememberMe" />记住我</p>
+			</form>
+	<div class="signin">
+		<input id="loginBut" type="button" value="Login" >
+	</div>
+</div>
+ <div class="copy-rights">
+					<p>Copyright &copy; 2020.Company name All rights reserved.More Coder <a href="http://www.fqcoder.cn" target="_blank" title="番茄Coder">番茄Coder</a></p>
+			</div>
+
+
+
+<script type="text/javascript">
+	$.fn.serializeObject = function () {
+		var o = {};
+		var a = this.serializeArray();
+		$.each(a, function () {
+			if (o[this.name]) {
+				if (!o[this.name].push) {
+					o[this.name] = [o[this.name]];
+				}
+				o[this.name].push(this.value);
+			} else {
+				o[this.name] = this.value || '';
+			}
+		});
+		return o;
+	};
+
+	$(function () {
+		$("#loginBut").click(function () {
+			var  arr=$('#loginForm').serializeObject();
+			$.ajax({
+				url: '/login',
+				type: 'post',
+				data:  arr,
+				dataType: "json",
+				success: function (data) {
+					if (data.code==200){
+						location.href=data.msg;
+					} else {
+						alert(data.msg);
+					}
+				},
+				error: function (data) {
+					alert(data.msg);
+				}
+			})
+		});
+	});
+</script>
+</body>
+</html>
